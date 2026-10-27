@@ -5,10 +5,12 @@ calculadoras y apuntes. Hecha con Angular 21 y Firebase.
 
 ## Integrantes
 - Juan José Hinestroza Guasguita — 2240080 — (módulos: auth, perfil, publicar, detalle, favoritos, categorías)
-- Miguel [apellido] — [código] — (módulos: catálogo, buscador, carrito, chat, campus)
+- Miguel Ángel Ararat — 2244235 — (módulos: catálogo, buscador, carrito, chat, campus)
 
 ## Enlaces
-- Propuesta gráfica: [pegar enlace]
+- Propuesta gráfica: <img width="1536" height="1024" alt="UAO Marketplace Guia" src="https://github.com/user-attachments/assets/a0611c8e-1d5a-41f8-bdf5-7e986104df3b" />
+
+
 - Aplicación publicada (Netlify): [pegar enlace]
 
 ## Estructuras de datos
