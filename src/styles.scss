@@ -1,1 +1,278 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'styles/variables' as *;
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    color: $texto;
+    background-color: $fondo;
+}
+
+a {
+    color: inherit;
+}
+
+.contenido {
+    padding: $espacio * 1.5;
+    max-width: 1100px;
+}
+
+.titulo-pagina {
+    font-size: 1.4rem;
+    margin: 0 0 $espacio;
+}
+
+.tarjeta {
+    @include tarjeta;
+    padding: $espacio;
+}
+
+.vacio {
+    color: $texto-suave;
+    text-align: center;
+    padding: $espacio * 2;
+}
+
+.precio {
+    font-weight: 700;
+}
+
+.btn {
+    display: inline-block;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+
+    &.rojo {
+        background-color: $rojo;
+        color: $blanco;
+
+        &:hover {
+            background-color: $rojo-oscuro;
+        }
+    }
+
+    &.borde {
+        background-color: $blanco;
+        color: $texto;
+        border: 1px solid $borde;
+
+        &:hover {
+            background-color: $fondo;
+        }
+    }
+
+    &.peligro {
+        background-color: $blanco;
+        color: $rojo;
+        border: 1px solid $rojo;
+    }
+
+    &.ancho {
+        width: 100%;
+    }
+
+    &.chico {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+}
+
+.campo {
+    display: block;
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 10px 12px;
+    border: 1px solid $borde;
+    border-radius: 8px;
+    background-color: $blanco;
+    font-family: inherit;
+    font-size: 0.9rem;
+
+    &:focus {
+        outline: 2px solid rgba($rojo, 0.25);
+        border-color: $rojo;
+    }
+}
+
+.etiqueta {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: $texto-suave;
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: $espacio;
+}
+
+.chip {
+    padding: 6px 14px;
+    border: 1px solid $borde;
+    border-radius: 999px;
+    background-color: $blanco;
+    font-size: 0.8rem;
+    cursor: pointer;
+
+    &.activo {
+        background-color: $rojo;
+        border-color: $rojo;
+        color: $blanco;
+    }
+}
+
+.etiqueta-pill {
+    display: inline-block;
+    padding: 2px 10px;
+    border: 1px solid $borde;
+    border-radius: 999px;
+    background-color: $fondo;
+    font-size: 0.7rem;
+    color: $texto-suave;
+
+    &.verde {
+        background-color: $verde-fondo;
+        border-color: transparent;
+        color: $verde;
+    }
+}
+
+.rejilla-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: $espacio;
+}
+
+.fila-producto {
+    @include tarjeta;
+    display: flex;
+    align-items: center;
+    gap: $espacio;
+    padding: 12px;
+    margin-bottom: 12px;
+
+    .foto {
+        width: 72px;
+        height: 72px;
+        flex-shrink: 0;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+    }
+
+    .info {
+        flex-grow: 1;
+
+        h4 {
+            margin: 0 0 4px;
+        }
+    }
+
+    .acciones {
+        display: flex;
+        gap: 8px;
+    }
+}
+
+.sin-imagen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    min-height: 72px;
+    border-radius: 8px;
+    background-color: $fondo;
+    color: $texto-suave;
+    font-size: 0.75rem;
+}
+
+.logo-rojo {
+    @include circulo(34px);
+    border-radius: 8px;
+    background-color: $rojo;
+    color: $blanco;
+    font-weight: 800;
+}
+
+.avatar {
+    @include circulo(40px);
+    flex-shrink: 0;
+    background-color: $rojo;
+    color: $blanco;
+    font-weight: 700;
+
+    &.grande {
+        width: 72px;
+        height: 72px;
+        font-size: 1.6rem;
+    }
+}
+
+.auth-fondo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: $espacio;
+}
+
+.auth-card {
+    @include tarjeta;
+    width: 100%;
+    max-width: 380px;
+    padding: $espacio * 2;
+
+    .auth-logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: $espacio;
+    }
+
+    h2 {
+        text-align: center;
+        margin: 0 0 4px;
+    }
+
+    .subtitulo {
+        text-align: center;
+        color: $texto-suave;
+        font-size: 0.85rem;
+        margin: 0 0 $espacio * 1.5;
+    }
+
+    .error {
+        color: $rojo;
+        font-size: 0.85rem;
+    }
+
+    .pie {
+        margin-top: $espacio;
+        text-align: center;
+        font-size: 0.85rem;
+        color: $texto-suave;
+
+        a {
+            color: $rojo;
+            font-weight: 600;
+        }
+    }
+}

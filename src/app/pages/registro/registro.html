@@ -1,0 +1,53 @@
+<div class="auth-fondo">
+    <div class="auth-card">
+        <div class="auth-logo">
+            <span class="logo-rojo">U</span>
+            <strong>UAO Marketplace</strong>
+        </div>
+
+        <h2>Crear cuenta</h2>
+        <p class="subtitulo">Únete a la comunidad estudiantil UAO</p>
+
+        <form (ngSubmit)="registrar()">
+            <label class="etiqueta" for="nombre">Nombre completo</label>
+            <input
+                id="nombre"
+                class="campo"
+                name="nombre"
+                placeholder="Juan Pérez"
+                [ngModel]="nombre()"
+                (ngModelChange)="nombre.set($event)"
+            />
+
+            <label class="etiqueta" for="email">Correo electrónico</label>
+            <input
+                id="email"
+                class="campo"
+                type="email"
+                name="email"
+                placeholder="tu@correo.com"
+                [ngModel]="email()"
+                (ngModelChange)="email.set($event)"
+            />
+
+            <label class="etiqueta" for="clave">Contraseña</label>
+            <input
+                id="clave"
+                class="campo"
+                type="password"
+                name="clave"
+                placeholder="Mínimo 6 caracteres"
+                [ngModel]="clave()"
+                (ngModelChange)="clave.set($event)"
+            />
+
+            <button type="submit" class="btn rojo ancho">Registrarse</button>
+        </form>
+
+        @if (msg()) {
+            <p class="error">{{ msg() }}</p>
+        }
+
+        <p class="pie">¿Ya tienes cuenta? <a routerLink="/login">Inicia sesión</a></p>
+    </div>
+</div>

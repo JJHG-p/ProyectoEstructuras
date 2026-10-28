@@ -1,0 +1,32 @@
+$rojo: #d4162c;
+$rojo-oscuro: #b01024;
+$sidebar: #151823;
+$sidebar-texto: #c9ccd6;
+$fondo: #f4f5f7;
+$blanco: #ffffff;
+$borde: #e4e6eb;
+$texto: #1d2130;
+$texto-suave: #6b7280;
+$verde: #1f9d55;
+$verde-fondo: #e3f6ea;
+$azul-chat: #dbeafe;
+$radio: 12px;
+$sombra: 0 1px 3px rgba(20, 24, 40, 0.08);
+$espacio: 16px;
+$ancho-sidebar: 220px;
+
+@mixin tarjeta {
+    background-color: $blanco;
+    border: 1px solid $borde;
+    border-radius: $radio;
+    box-shadow: $sombra;
+}
+
+@mixin circulo($tamano) {
+    width: $tamano;
+    height: $tamano;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
