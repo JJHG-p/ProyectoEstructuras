@@ -1,1 +1,27 @@
-<p>favoritos works!</p>
+<div class="contenido">
+    <h1 class="titulo-pagina">Lista de deseos</h1>
+
+    @for (item of favoritos.items(); track item.productoId) {
+        <div class="fila-producto">
+            <div class="foto">
+                @if (item.imagenUrl) {
+                    <img [src]="item.imagenUrl" [alt]="item.titulo" />
+                } @else {
+                    <div class="sin-imagen">Sin imagen</div>
+                }
+            </div>
+
+            <div class="info">
+                <h4>{{ item.titulo }}</h4>
+                <span class="precio">{{ dinero(item.precio) }}</span>
+            </div>
+
+            <div class="acciones">
+                <a class="btn rojo chico" [routerLink]="['/producto', item.productoId]">Ver producto</a>
+                <button class="btn peligro chico" (click)="favoritos.quitar(item.productoId)">Quitar</button>
+            </div>
+        </div>
+    } @empty {
+        <p class="vacio">Aún no tienes productos en tu lista de deseos</p>
+    }
+</div>
