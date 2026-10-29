@@ -1,1 +1,19 @@
-<p>nodo-categoria works!</p>
+<div
+  class="fila"
+  [class.activo]="seleccion.ruta() === nodo.ruta"
+  (click)="elegir()"
+>
+  <span class="signo">{{ tieneCategorias() ? (abierto() ? '-' : '+') : '' }}</span>
+  <span class="nombre">{{ nodo.nombre }}</span>
+  <span class="contador">{{ cuantos() }}</span>
+</div>
+
+@if (abierto() && tieneCategorias()) {
+    <div class="hijos">
+        @for (hijo of nodo.hijos; track hijo.ruta + hijo.productoId) {
+            @if (hijo.tipo === 'categoria') {
+                <app-nodo-categoria [nodo]="hijo"></app-nodo-categoria>
+            }
+        }
+    </div>
+}

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { get, ref } from 'firebase/database';
 import { db } from '../firebase.config';
-import { Producto } from '../../models/productos';
+import { Producto } from '../../models/producto';
 import { RealtimeCollectionService } from './realtime-collection.service';
 
 @Injectable({

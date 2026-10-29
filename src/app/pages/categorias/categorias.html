@@ -1,1 +1,42 @@
-<p>categorias works!</p>
+<div class="contenido">
+    <h1 class="titulo-pagina">Categorías y materias</h1>
+
+    <div class="dos-paneles">
+        <section class="tarjeta arbol">
+            <div
+                class="raiz"
+                [class.activo]="seleccion.ruta() === ''"
+                (click)="seleccion.elegir('')"
+            >
+                Todas las categorías
+            </div>
+
+            @for (hijo of arbol().raiz.hijos; track hijo.ruta) {
+                <app-nodo-categoria [nodo]="hijo"></app-nodo-categoria>
+            }
+        </section>
+
+        <section class="tarjeta productos">
+            <h3>Productos en esta categoría</h3>
+            <p class="actual">{{ nodoActual().nombre }}</p>
+
+            @for (p of productosActuales(); track p.id) {
+                <a class="fila-producto" [routerLink]="['/producto', p.id]">
+                    <div class="foto">
+                        @if (p.imagenUrl) {
+                            <img [src]="p.imagenUrl" [alt]="p.titulo" />
+                        } @else {
+                            <div class="sin-imagen">Sin imagen</div>
+                        }
+                    </div>
+                    <div class="info">
+                        <h4>{{ p.titulo }}</h4>
+                        <span class="precio">{{ dinero(p.precio) }}</span>
+                    </div>
+                </a>
+            } @empty {
+                <p class="vacio">No hay productos en esta categoría todavía</p>
+            }
+        </section>
+    </div>
+</div>

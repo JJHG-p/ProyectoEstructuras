@@ -1,0 +1,48 @@
+@use '../../../styles/variables' as *;
+
+.dos-paneles {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: $espacio;
+    align-items: start;
+}
+
+.arbol {
+    .raiz {
+        padding: 8px 10px;
+        border-radius: 8px;
+        font-weight: 700;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $fondo;
+        }
+
+        &.activo {
+            background-color: rgba($rojo, 0.1);
+            color: $rojo;
+        }
+    }
+}
+
+.productos {
+    h3 {
+        margin: 0;
+    }
+
+    .actual {
+        margin: 4px 0 $espacio;
+        color: $texto-suave;
+    }
+
+    a.fila-producto {
+        text-decoration: none;
+        color: inherit;
+    }
+}
+
+@media (max-width: 768px) {
+    .dos-paneles {
+        grid-template-columns: 1fr;
+    }
+}
