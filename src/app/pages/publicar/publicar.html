@@ -1,1 +1,88 @@
-<p>publicar works!</p>
+<div class="contenido">
+    <h1 class="titulo-pagina">{{ id() ? 'Editar producto' : 'Publicar producto' }}</h1>
+
+    <form class="tarjeta formulario" (ngSubmit)="guardar()">
+        <label class="etiqueta" for="titulo">Título</label>
+        <input
+        id="titulo"
+        class="campo"
+        name="titulo"
+        placeholder="Cálculo diferencial e integral"
+        [ngModel]="titulo()"
+        (ngModelChange)="titulo.set($event)"
+        />
+
+        <div class="dos-columnas">
+            <div>
+                <label class="etiqueta" for="precio">Precio (COP)</label>
+                <input
+                id="precio"
+                class="campo"
+                type="number"
+                name="precio"
+                placeholder="45000"
+                [ngModel]="precio()"
+                (ngModelChange)="precio.set($event)"
+                />
+            </div>
+            <div>
+                <label class="etiqueta" for="ruta">Categoría y materia</label>
+                <select
+                id="ruta"
+                class="campo"
+                name="ruta"
+                [ngModel]="ruta()"
+                (ngModelChange)="ruta.set($event)"
+                >
+                @for (destino of destinos; track destino) {
+                    <option [value]="destino">{{ destino }}</option>
+                }
+                </select>
+            </div>
+        </div>
+
+        <label class="etiqueta" for="descripcion">Descripción</label>
+        <textarea
+        id="descripcion"
+        class="campo"
+        name="descripcion"
+        rows="4"
+        placeholder="Estado del producto, edición, detalles..."
+        [ngModel]="descripcion()"
+        (ngModelChange)="descripcion.set($event)"
+        ></textarea>
+
+        <label class="etiqueta" for="imagenUrl">Enlace de la imagen (opcional)</label>
+        <input
+        id="imagenUrl"
+        class="campo"
+        name="imagenUrl"
+        placeholder="https://..."
+        [ngModel]="imagenUrl()"
+        (ngModelChange)="imagenUrl.set($event)"
+        />
+
+        @if (id()) {
+            <label class="casilla">
+                <input
+                type="checkbox"
+                name="disponible"
+                [ngModel]="disponible()"
+                (ngModelChange)="disponible.set($event)"
+                />
+                Disponible
+            </label>
+        }
+
+        @if (msg()) {
+            <p class="error">{{ msg() }}</p>
+        }
+
+        <div class="botones">
+            <button type="submit" class="btn rojo" [disabled]="guardando()">
+                {{ guardando() ? 'Guardando...' : 'Guardar' }}
+            </button>
+            <a class="btn borde" routerLink="/perfil">Cancelar</a>
+        </div>
+    </form>
+</div>
