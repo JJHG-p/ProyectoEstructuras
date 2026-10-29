@@ -1,0 +1,65 @@
+@use '../../../styles/variables' as *;
+
+.cabecera {
+    display: flex;
+    align-items: center;
+    gap: $espacio * 1.5;
+    margin-bottom: $espacio;
+
+    .datos {
+        flex-grow: 1;
+
+        h2 {
+            margin: 0 0 4px;
+        }
+
+        p {
+            margin: 0 0 4px;
+        }
+
+        .suave {
+            color: $texto-suave;
+            font-size: 0.85rem;
+        }
+    }
+
+    .derecha {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+.pestanas {
+    display: flex;
+    gap: $espacio;
+    margin-bottom: $espacio;
+    border-bottom: 1px solid $borde;
+}
+
+.pestana {
+    padding: 10px 4px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    background: none;
+    color: $texto-suave;
+    font-size: 0.9rem;
+    cursor: pointer;
+
+    &.activa {
+        border-bottom-color: $rojo;
+        color: $texto;
+        font-weight: 600;
+    }
+}
+
+.info a {
+    text-decoration: none;
+}
+
+@media (max-width: 640px) {
+    .cabecera {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

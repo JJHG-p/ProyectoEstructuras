@@ -1,1 +1,116 @@
-<p>perfil works!</p>
+<div class="contenido">
+    <h1 class="titulo-pagina">Mi perfil</h1>
+
+    <div class="tarjeta cabecera">
+        <span class="avatar grande">{{ inicial() }}</span>
+
+        <div class="datos">
+            @if (editando()) {
+                <input
+                class="campo"
+                name="nombre"
+                placeholder="Nombre completo"
+                [ngModel]="nombre()"
+                (ngModelChange)="nombre.set($event)"
+                />
+                <input
+                class="campo"
+                name="carrera"
+                placeholder="Estudiante de..."
+                [ngModel]="carrera()"
+                (ngModelChange)="carrera.set($event)"
+                />
+                <button class="btn rojo chico" (click)="guardar()">Guardar</button>
+                <button class="btn borde chico" (click)="editando.set(false)">Cancelar</button>
+            } @else {
+                <h2>{{ nombre() }}</h2>
+                <p>{{ auth.usuario() }}</p>
+                <p class="suave">{{ carrera() || 'Agrega tu carrera' }}</p>
+                <button class="btn borde chico" (click)="editando.set(true)">Editar perfil</button>
+            }
+        </div>
+
+        <div class="derecha">
+            <a class="btn rojo chico" routerLink="/publicar">Publicar producto</a>
+            <button class="btn borde chico" (click)="auth.salir()">Cerrar sesión</button>
+        </div>
+    </div>
+
+    <div class="pestanas">
+        @for (nombrePestana of pestanas; track nombrePestana) {
+            <button
+                class="pestana"
+                [class.activa]="pestana() === nombrePestana"
+                (click)="pestana.set(nombrePestana)"
+            >
+                {{ nombrePestana }}
+            </button>
+        }
+    </div>
+
+    @switch (pestana()) {
+        @case ('Mis productos') {
+            @for (p of misProductos(); track p.id) {
+                <div class="fila-producto">
+                    <div class="foto">
+                        @if (p.imagenUrl) {
+                            <img [src]="p.imagenUrl" [alt]="p.titulo" />
+                        } @else {
+                            <div class="sin-imagen">Sin imagen</div>
+                        }
+                    </div>
+                    <div class="info">
+                        <a [routerLink]="['/producto', p.id]"><h4>{{ p.titulo }}</h4></a>
+                        <span class="precio">{{ dinero(p.precio) }}</span>
+                    </div>
+                    <div class="acciones">
+                        <a class="btn borde chico" [routerLink]="['/publicar', p.id]">Editar</a>
+                        <button class="btn peligro chico" (click)="eliminar(p)">Eliminar</button>
+                    </div>
+                </div>
+            } @empty {
+                <p class="vacio">Aún no has publicado productos</p>
+            }
+        }
+
+        @case ('Favoritos') {
+            @for (item of favoritos.items(); track item.productoId) {
+                <div class="fila-producto">
+                    <div class="foto">
+                        @if (item.imagenUrl) {
+                            <img [src]="item.imagenUrl" [alt]="item.titulo" />
+                        } @else {
+                            <div class="sin-imagen">Sin imagen</div>
+                        }
+                    </div>
+                    <div class="info">
+                        <a [routerLink]="['/producto', item.productoId]"><h4>{{ item.titulo }}</h4></a>
+                        <span class="precio">{{ dinero(item.precio) }}</span>
+                    </div>
+                </div>
+            } @empty {
+                <p class="vacio">No tienes favoritos</p>
+            }
+        }
+
+        @case ('Historial') {
+            @for (p of vistos(); track p.id) {
+                <div class="fila-producto">
+                    <div class="foto">
+                        @if (p.imagenUrl) {
+                            <img [src]="p.imagenUrl" [alt]="p.titulo" />
+                        } @else {
+                            <div class="sin-imagen">Sin imagen</div>
+                        }
+                    </div>
+                    <div class="info">
+                        <a [routerLink]="['/producto', p.id]"><h4>{{ p.titulo }}</h4></a>
+                        <span class="precio">{{ dinero(p.precio) }}</span>
+                    </div>
+                </div>
+            } @empty {
+                <p class="vacio">Todavía no has visto productos en esta sesión</p>
+            }
+        }
+    }
+</div>
