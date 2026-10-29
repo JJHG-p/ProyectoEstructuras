@@ -1,1 +1,59 @@
-<p>producto-detalle works!</p>
+<div class="contenido">
+    <button class="btn borde chico volver" (click)="volver()">Volver al anterior</button>
+
+    @if (producto(); as p) {
+        <div class="detalle tarjeta">
+            <div class="galeria">
+                @if (p.imagenUrl) {
+                    <img [src]="p.imagenUrl" [alt]="p.titulo" />
+                } @else {
+                    <div class="sin-imagen">Sin imagen</div>
+                }
+            </div>
+
+            <div class="datos">
+                <h1>{{ p.titulo }}</h1>
+                <p class="precio grande">{{ dinero(p.precio) }}</p>
+
+                <div class="etiquetas">
+                    <span class="etiqueta-pill">{{ p.categoria.slice(0, -1) }}</span>
+                    @if (p.disponible) {
+                        <span class="etiqueta-pill verde">Disponible</span>
+                    } @else {
+                        <span class="etiqueta-pill">No disponible</span>
+                    }
+                </div>
+
+            <div class="vendedor">
+                <span class="avatar">{{ p.vendedorNombre.charAt(0).toUpperCase() }}</span>
+                <div>
+                    <strong>Vendido por: {{ p.vendedorNombre }}</strong>
+                    <small>{{ p.vendedorEmail }}</small>
+                </div>
+            </div>
+
+            <h3>Descripción</h3>
+            <p class="descripcion">{{ p.descripcion || 'Sin descripción' }}</p>
+
+            <ul class="datos-lista">
+                <li>Categoría: {{ p.categoria }}</li>
+                <li>Materia: {{ materia(p) }}</li>
+                <li>Publicado: {{ fecha(p.publicadoEn) }}</li>
+            </ul>
+
+            @if (esMio(p)) {
+                <p class="aviso">Este producto es tuyo. Puedes editarlo desde tu perfil.</p>
+            } @else {
+                <div class="botones">
+                    <button class="btn rojo ancho" (click)="contactar(p)">Contactar al vendedor</button>
+                    <button class="btn borde ancho" (click)="alternarFavorito(p)">
+                        {{ esFavorito() ? 'Quitar de favoritos' : 'Agregar a favoritos' }}
+                    </button>
+                </div>
+            }
+            </div>
+        </div>
+    } @else {
+        <p class="vacio">Cargando producto...</p>
+    }
+</div>

@@ -1,0 +1,83 @@
+@use '../../../styles/variables' as *;
+
+.volver {
+    margin-bottom: $espacio;
+}
+
+.detalle {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: $espacio * 2;
+    padding: $espacio * 1.5;
+
+    .galeria {
+        height: 340px;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: $radio;
+        }
+    }
+
+    .datos {
+        h1 {
+            margin: 0 0 8px;
+            font-size: 1.5rem;
+        }
+
+        .grande {
+            font-size: 1.6rem;
+            margin: 0 0 8px;
+        }
+
+        .etiquetas {
+            display: flex;
+            gap: 8px;
+            margin-bottom: $espacio;
+        }
+
+        .vendedor {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: $espacio;
+
+            small {
+                display: block;
+                color: $texto-suave;
+            }
+        }
+
+        .descripcion {
+            color: $texto-suave;
+        }
+
+        .datos-lista {
+            padding-left: $espacio;
+            color: $texto-suave;
+            font-size: 0.9rem;
+        }
+
+        .botones {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: $espacio * 1.5;
+        }
+
+        .aviso {
+            padding: 10px;
+            border-radius: 8px;
+            background-color: $fondo;
+            color: $texto-suave;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .detalle {
+        grid-template-columns: 1fr;
+    }
+}
