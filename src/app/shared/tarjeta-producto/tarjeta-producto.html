@@ -1,1 +1,24 @@
-<p>tarjeta-producto works!</p>
+<article class="tarjeta-producto">
+  <a class="foto" [routerLink]="['/producto', producto.id]">
+    @if (producto.imagenUrl) {
+      <img [src]="producto.imagenUrl" [alt]="producto.titulo" />
+    } @else {
+      <div class="sin-imagen">Sin imagen</div>
+    }
+  </a>
+  <div class="cuerpo">
+    <h4>{{ producto.titulo }}</h4>
+    <p class="precio">{{ dinero(producto.precio) }}</p>
+    <div class="pie">
+      <span class="etiqueta-pill">{{ etiqueta() }}</span>
+      <button
+        class="corazon"
+        [class.activo]="favorito"
+        (click)="alternarFavorito.emit(producto)"
+        title="Favorito"
+      >
+        {{ favorito ? '♥' : '♡' }}
+      </button>
+    </div>
+  </div>
+</article>
