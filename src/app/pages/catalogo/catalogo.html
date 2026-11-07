@@ -1,1 +1,39 @@
-<p>catalogo works!</p>
+<div class="contenido">
+  <h1 class="titulo-pagina">Catálogo de productos</h1>
+
+  <app-buscador [valor]="busqueda()" (cambio)="busqueda.set($event)"></app-buscador>
+
+  <div class="filtros">
+    <div class="chips">
+      @for (nombre of categorias; track nombre) {
+        <button class="chip" [class.activo]="categoria() === nombre" (click)="categoria.set(nombre)">
+          {{ nombre }}
+        </button>
+      }
+    </div>
+
+    <select
+      class="ordenar"
+      name="orden"
+      [ngModel]="orden()"
+      (ngModelChange)="orden.set($event)"
+    >
+      <option value="recientes">Ordenar por: Más recientes</option>
+      <option value="solicitados">Más solicitados</option>
+      <option value="menor">Precio: de menor a mayor</option>
+      <option value="mayor">Precio: de mayor a menor</option>
+    </select>
+  </div>
+
+  @if (productos.cargando()) {
+    <p class="vacio">Cargando productos...</p>
+  } @else {
+    <div class="rejilla-productos">
+      @for (producto of visibles(); track producto.id) {
+        <app-tarjeta-producto [producto]="producto"></app-tarjeta-producto>
+      } @empty {
+        <p class="vacio">No encontramos productos con ese filtro</p>
+      }
+    </div>
+  }
+</div>
