@@ -1,1 +1,20 @@
-<p>buscador works!</p>
+<div class="buscador">
+  <input
+    class="entrada"
+    placeholder="Buscar productos, materias o categorías..."
+    [ngModel]="texto()"
+    (ngModelChange)="escribir($event)"
+    (keydown.enter)="enviar()"
+    (focus)="abierto.set(true)"
+    (blur)="abierto.set(false)"
+  />
+  <button class="lupa" (mousedown)="enviar()" title="Buscar">🔍</button>
+
+  @if (abierto() && sugerencias().length > 0) {
+    <ul class="sugerencias">
+      @for (sugerencia of sugerencias(); track sugerencia) {
+        <li (mousedown)="elegir(sugerencia)">{{ sugerencia }}</li>
+      }
+    </ul>
+  }
+</div>

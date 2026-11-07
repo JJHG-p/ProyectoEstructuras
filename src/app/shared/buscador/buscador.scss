@@ -1,0 +1,56 @@
+@use '../../../styles/variables' as *;
+
+.buscador {
+  position: relative;
+  display: flex;
+  background-color: $blanco;
+  border: 1px solid $borde;
+  border-radius: 10px;
+
+  .entrada {
+    flex-grow: 1;
+    padding: 12px 14px;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: $texto;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .lupa {
+    margin: 4px;
+    padding: 0 14px;
+    border: none;
+    border-radius: 8px;
+    background-color: $rojo;
+    cursor: pointer;
+  }
+
+  .sugerencias {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    margin: 4px 0 0;
+    padding: 4px 0;
+    list-style: none;
+    @include tarjeta;
+
+    li {
+      padding: 10px 14px;
+      color: $texto;
+      font-size: 0.9rem;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $fondo;
+      }
+    }
+  }
+}
