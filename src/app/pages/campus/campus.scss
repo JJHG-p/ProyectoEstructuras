@@ -1,0 +1,84 @@
+@use '../../../styles/variables' as *;
+
+$camino-normal: #cfd3dc;
+$punto-normal: #8b93a7;
+
+.dos-paneles {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: $espacio;
+  align-items: start;
+}
+
+.mapa {
+  width: 100%;
+  height: auto;
+  border-radius: $radio;
+  background-color: #eef1f6;
+
+  .camino {
+    stroke: $camino-normal;
+    stroke-width: 4;
+    stroke-linecap: round;
+
+    &.activo {
+      stroke: $rojo;
+      stroke-width: 6;
+    }
+  }
+
+  .minutos {
+    fill: $texto-suave;
+    font-size: 10px;
+    text-anchor: middle;
+  }
+
+  .punto {
+    fill: $blanco;
+    stroke: $punto-normal;
+    stroke-width: 3;
+
+    &.activo {
+      stroke: $rojo;
+    }
+
+    &.elegido {
+      fill: $rojo;
+      stroke: $rojo-oscuro;
+    }
+  }
+
+  .nombre {
+    fill: $texto;
+    font-size: 12px;
+    font-weight: 600;
+    text-anchor: middle;
+  }
+}
+
+.ruta {
+  h3 {
+    margin: 0 0 $espacio;
+  }
+
+  .distancia {
+    margin: 0 0 8px;
+  }
+
+  .pasos {
+    margin: 0 0 $espacio;
+    padding-left: 20px;
+    color: $texto-suave;
+    font-size: 0.9rem;
+  }
+
+  .aviso {
+    color: $texto-suave;
+  }
+}
+
+@media (max-width: 768px) {
+  .dos-paneles {
+    grid-template-columns: 1fr;
+  }
+}
