@@ -1,6 +1,6 @@
 import { Component, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Grafo } from '../../data-structures/grafo';
+import { Grafo } from '../../models/grafo';
 import { CAMINOS, PUNTOS, PuntoCampus } from '../../models/campus';
 
 @Component({

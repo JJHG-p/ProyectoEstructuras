@@ -1,1 +1,59 @@
-<p>chat works!</p>
+<div class="contenido">
+  <h1 class="titulo-pagina">Chat</h1>
+
+  <div class="chat tarjeta">
+    <aside class="conversaciones">
+      @for (c of conversaciones(); track c.otro) {
+        <div class="conv" [class.activa]="c.otro === con()" (click)="abrir(c.otro)">
+          <span class="avatar">{{ nombreDe(c.otro).charAt(0).toUpperCase() }}</span>
+          <div class="texto">
+            <strong>{{ nombreDe(c.otro) }}</strong>
+            <small>{{ c.ultimo.texto }}</small>
+          </div>
+          <span class="hora">{{ hora(c.ultimo.enviadoEn) }}</span>
+        </div>
+      } @empty {
+        <p class="vacio">
+          Aún no tienes conversaciones. Abre un producto y pulsa "Contactar al vendedor".
+        </p>
+      }
+    </aside>
+
+    <section class="panel">
+      @if (con()) {
+        <header class="cabecera">
+          <span class="avatar">{{ nombreDe(con()).charAt(0).toUpperCase() }}</span>
+          <div>
+            <strong>{{ nombreDe(con()) }}</strong>
+            <small>{{ con() }}</small>
+          </div>
+        </header>
+
+        <div class="mensajes">
+          @for (m of mensajesActivos(); track m.id) {
+            <div class="burbuja" [class.mia]="m.de === auth.usuario()">
+              <span>{{ m.texto }}</span>
+              <small>{{ hora(m.enviadoEn) }}</small>
+            </div>
+          } @empty {
+            <p class="vacio">Escribe el primer mensaje</p>
+          }
+        </div>
+
+        <form class="escribir" (ngSubmit)="enviar()">
+          <input
+            class="campo"
+            name="texto"
+            placeholder="Escribe un mensaje..."
+            autocomplete="off"
+            [ngModel]="texto()"
+            (ngModelChange)="texto.set($event)"
+          />
+          <button type="submit" class="enviar" title="Enviar">&gt;</button>
+        </form>
+      } @else {
+        <p class="vacio">Selecciona una conversación</p>
+      }
+    </section>
+  </div>
+</div>
