@@ -1,0 +1,35 @@
+@use '../../../styles/variables' as *;
+
+.cantidad {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  button {
+    width: 28px;
+    height: 28px;
+    border: 1px solid $borde;
+    border-radius: 6px;
+    background-color: $blanco;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $fondo;
+    }
+  }
+}
+
+.resumen {
+  display: flex;
+  justify-content: space-between;
+  margin: $espacio 0;
+  font-size: 1.05rem;
+}
+
+.aviso {
+  margin: $espacio 0;
+  padding: $espacio;
+  border-radius: 8px;
+  background-color: $fondo;
+  font-size: 0.9rem;
+}

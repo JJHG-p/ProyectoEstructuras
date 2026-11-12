@@ -1,0 +1,85 @@
+<div class="contenido">
+  <h1 class="titulo-pagina">Puntos de encuentro del campus</h1>
+
+  <div class="dos-paneles">
+    <section class="tarjeta mapa-tarjeta">
+      <svg viewBox="0 0 600 360" class="mapa">
+        @for (camino of caminos; track $index) {
+          <line
+            class="camino"
+            [class.activo]="caminoEnRuta(camino.desde, camino.hasta)"
+            [attr.x1]="punto(camino.desde).x"
+            [attr.y1]="punto(camino.desde).y"
+            [attr.x2]="punto(camino.hasta).x"
+            [attr.y2]="punto(camino.hasta).y"
+          />
+          <text
+            class="minutos"
+            [attr.x]="(punto(camino.desde).x + punto(camino.hasta).x) / 2"
+            [attr.y]="(punto(camino.desde).y + punto(camino.hasta).y) / 2 - 4"
+          >
+            {{ camino.minutos }} min
+          </text>
+        }
+
+        @for (p of puntos; track p.id) {
+          <circle
+            class="punto"
+            [class.activo]="puntoEnRuta(p.id)"
+            [class.elegido]="p.id === origen() || p.id === destino()"
+            r="9"
+            [attr.cx]="p.x"
+            [attr.cy]="p.y"
+          />
+          <text class="nombre" [attr.x]="p.x" [attr.y]="p.y - 15">{{ p.nombre }}</text>
+        }
+      </svg>
+    </section>
+
+    <section class="tarjeta ruta">
+      <h3>Ruta más corta</h3>
+
+      <label class="etiqueta" for="origen">De:</label>
+      <select
+        id="origen"
+        class="campo"
+        name="origen"
+        [ngModel]="origen()"
+        (ngModelChange)="cambiarOrigen($event)"
+      >
+        @for (p of puntos; track p.id) {
+          <option [value]="p.id">{{ p.nombre }}</option>
+        }
+      </select>
+
+      <label class="etiqueta" for="destino">A:</label>
+      <select
+        id="destino"
+        class="campo"
+        name="destino"
+        [ngModel]="destino()"
+        (ngModelChange)="cambiarDestino($event)"
+      >
+        @for (p of puntos; track p.id) {
+          <option [value]="p.id">{{ p.nombre }}</option>
+        }
+      </select>
+
+      @if (ruta(); as r) {
+        @if (r.camino.length > 1) {
+          <p class="distancia">Distancia: <strong>{{ r.total }} min (aprox.)</strong></p>
+          <ol class="pasos">
+            @for (paso of pasos(); track $index) {
+              <li>{{ paso.desde }} → {{ paso.hasta }} ({{ paso.minutos }} min)</li>
+            }
+          </ol>
+          <button class="btn rojo ancho" (click)="verRuta.set(true)">Ver ruta en el mapa</button>
+        } @else {
+          <p class="aviso">Elige dos puntos distintos</p>
+        }
+      } @else {
+        <p class="aviso">No hay camino entre esos puntos</p>
+      }
+    </section>
+  </div>
+</div>

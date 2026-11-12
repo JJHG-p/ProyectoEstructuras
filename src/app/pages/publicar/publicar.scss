@@ -1,0 +1,35 @@
+@use '../../../styles/variables' as *;
+
+.formulario {
+    max-width: 640px;
+    padding: $espacio * 1.5;
+}
+
+.dos-columnas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $espacio;
+}
+
+.casilla {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: $espacio;
+}
+
+.error {
+    color: $rojo;
+    font-size: 0.85rem;
+}
+
+.botones {
+    display: flex;
+    gap: 8px;
+}
+
+@media (max-width: 640px) {
+    .dos-columnas {
+        grid-template-columns: 1fr;
+    }
+}

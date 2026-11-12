@@ -1,0 +1,24 @@
+<div class="app">
+  <aside class="sidebar">
+    <a class="marca" routerLink="/">
+      <span class="logo-rojo">U</span>
+      <span class="marca-texto">UAO Marketplace</span>
+    </a>
+    <nav>
+      <a class="enlace" routerLink="/">
+        <span class="icono"> </span>
+        <span>Inicio</span>
+      </a>
+      @for (enlace of enlaces; track enlace.ruta) {
+        <a class="enlace" [routerLink]="enlace.ruta" routerLinkActive="activo">
+          <span class="icono">{{ enlace.icono }}</span>
+          <span>{{ enlace.texto }}</span>
+        </a>
+      }
+    </nav>
+    <button class="salir" (click)="auth.salir()">Cerrar sesión</button>
+  </aside>
+  <main class="principal">
+    <router-outlet />
+  </main>
+</div>

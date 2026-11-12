@@ -1,0 +1,59 @@
+<header class="topbar">
+  <a class="marca" routerLink="/">
+    <span class="logo-rojo">U</span>
+    <strong>UAO Marketplace</strong>
+  </a>
+  <nav>
+    <a routerLink="/">Inicio</a>
+    <a routerLink="/catalogo">Catálogo</a>
+    <a routerLink="/categorias">Categorías</a>
+    <a routerLink="/campus">Campus</a>
+  </nav>
+  <a class="avatar" routerLink="/perfil" title="Mi perfil">{{ inicial() }}</a>
+</header>
+
+<section class="hero">
+  <div class="hero-texto">
+    <h1>Tu marketplace estudiantil UAO</h1>
+    <p>Compra, vende e intercambia libros, calculadoras y apuntes entre estudiantes.</p>
+    <app-buscador (buscar)="buscar($event)"></app-buscador>
+  </div>
+</section>
+
+<section class="categorias">
+  <a class="cat" routerLink="/catalogo" [queryParams]="{ categoria: 'Libros' }">
+    <span class="icono">📚</span>
+    <strong>Libros</strong>
+    <small>Compra y vende libros usados y nuevos</small>
+  </a>
+  <a class="cat" routerLink="/catalogo" [queryParams]="{ categoria: 'Calculadoras' }">
+    <span class="icono">🧮</span>
+    <strong>Calculadoras</strong>
+    <small>Encuentra la calculadora que necesitas</small>
+  </a>
+  <a class="cat" routerLink="/catalogo" [queryParams]="{ categoria: 'Apuntes' }">
+    <span class="icono">📝</span>
+    <strong>Apuntes</strong>
+    <small>Comparte y consigue material académico</small>
+  </a>
+  <a class="cat" routerLink="/chat">
+    <span class="icono">👥</span>
+    <strong>Comunidad</strong>
+    <small>Conecta con otros estudiantes UAO</small>
+  </a>
+</section>
+
+<section class="destacados">
+  <h2>Productos más solicitados</h2>
+  <div class="rejilla-productos">
+    @for (producto of destacados(); track producto.id) {
+      <app-tarjeta-producto 
+      [producto]="producto"
+      [favorito]="favoritos.contiene(producto.id ?? '')"
+      (alternarFavorito)="favoritos.alternar($event)"
+      ></app-tarjeta-producto>
+    } @empty {
+      <p class="vacio">Todavía no hay productos publicados</p>
+    }
+  </div>
+</section>

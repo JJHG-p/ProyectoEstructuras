@@ -1,31 +1,59 @@
-# Marketplace UAO
+# MarketplaceUao
 
-Aplicación web para que estudiantes de la UAO compren, vendan e intercambien libros,
-calculadoras y apuntes. Hecha con Angular 21 y Firebase.
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.28.
 
-## Integrantes
-- Juan José Hinestroza Guasguita — 2240080 — (módulos: auth, perfil, publicar, detalle, favoritos, categorías)
-- Miguel Ángel Ararat — 2244235 — (módulos: catálogo, buscador, carrito, chat, campus)
+## Development server
 
-## Enlaces
-- Propuesta gráfica: <img width="1536" height="1024" alt="UAO Marketplace Guia" src="https://github.com/user-attachments/assets/a0611c8e-1d5a-41f8-bdf5-7e986104df3b" />
+To start a local development server, run:
 
+```bash
+ng serve
+```
 
-- Aplicación publicada (Netlify): [pegar enlace]
+Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Estructuras de datos
-| Estructura | Archivo | Uso |
-|---|---|---|
-| Lista enlazada | `src/app/data-structures/lista-enlazada.ts` | Carrito y lista de deseos |
-| Pila | `src/app/data-structures/pila.ts` | Historial de productos vistos |
-| Árbol | `src/app/data-structures/arbol.ts` | Categorías → materias → productos |
-| Heap | `src/app/data-structures/heap.ts` | Productos más solicitados |
-| Grafo (Dijkstra) | `src/app/data-structures/grafo.ts` | Ruta más corta entre puntos del campus |
+## Code scaffolding
 
-## Cómo ejecutarlo
-    git clone https://github.com/JJHG-p/ProyectoEstructuras.git
-    npm install
-    ng serve
+Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
-## Pruebas
-    ng test --watch=false
+```bash
+ng generate component component-name
+```
+
+For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+
+```bash
+ng generate --help
+```
+
+## Building
+
+To build the project run:
+
+```bash
+ng build
+```
+
+This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+
+## Running unit tests
+
+To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+
+```bash
+ng test
+```
+
+## Running end-to-end tests
+
+For end-to-end (e2e) testing, run:
+
+```bash
+ng e2e
+```
+
+Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+
+## Additional Resources
+
+For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

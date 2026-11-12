@@ -1,0 +1,43 @@
+<div class="auth-fondo">
+    <div class="auth-card">
+        <div class="auth-logo">
+            <span class="logo-rojo">U</span>
+            <strong>UAO Marketplace</strong>
+        </div>
+
+        <h2>Iniciar sesión</h2>
+        <p class="subtitulo">Entra con tu cuenta de estudiante</p>
+
+        <form (ngSubmit)="entrar()">
+            <label class="etiqueta" for="email">Correo electrónico</label>
+            <input
+                id="email"
+                class="campo"
+                type="email"
+                name="email"
+                placeholder="tu@correo.com"
+                [ngModel]="email()"
+                (ngModelChange)="email.set($event)"
+            />
+
+            <label class="etiqueta" for="clave">Contraseña</label>
+            <input
+                id="clave"
+                class="campo"
+                type="password"
+                name="clave"
+                placeholder="Tu contraseña"
+                [ngModel]="clave()"
+                (ngModelChange)="clave.set($event)"
+            />
+
+            <button type="submit" class="btn rojo ancho">Iniciar sesión</button>
+        </form>
+
+        @if (msg()) {
+            <p class="error">{{ msg() }}</p>
+        }
+
+        <p class="pie">¿No tienes una cuenta? <a routerLink="/registro">Regístrate</a></p>
+    </div>
+</div>

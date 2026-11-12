@@ -1,0 +1,40 @@
+<div class="contenido">
+  <h1 class="titulo-pagina">Carrito de compras</h1>
+
+  @for (item of carrito.items(); track item.productoId) {
+    <div class="fila-producto">
+      <a class="foto" [routerLink]="['/producto', item.productoId]">
+        @if (item.imagenUrl) {
+          <img [src]="item.imagenUrl" [alt]="item.titulo" />
+        } @else {
+          <div class="sin-imagen">Sin imagen</div>
+        }
+      </a>
+      <div class="info">
+        <h4>{{ item.titulo }}</h4>
+        <span class="precio">{{ dinero(item.precio) }}</span>
+      </div>
+      <div class="cantidad">
+        <button (click)="carrito.cambiarCantidad(item.productoId, -1)">-</button>
+        <span>{{ item.cantidad }}</span>
+        <button (click)="carrito.cambiarCantidad(item.productoId, 1)">+</button>
+      </div>
+      <button class="btn borde chico" (click)="consultar(item.vendedorEmail)">Consultar</button>
+      <button class="btn peligro chico" (click)="carrito.quitar(item.productoId)">Quitar</button>
+    </div>
+  } @empty {
+    <p class="vacio">Tu carrito está vacío</p>
+  }
+
+  @if (carrito.cantidad() > 0) {
+    <div class="tarjeta resumen">
+      <span>Total ({{ carrito.cantidad() }} productos)</span>
+      <strong>{{ dinero(carrito.total()) }}</strong>
+    </div>
+    <p class="aviso">
+      El pago no se hace en la app: consulta al vendedor por el chat y pagan <strong>contra entrega</strong>
+      en un punto de encuentro del campus.
+    </p>
+    <button class="btn rojo ancho" (click)="verPuntosDeEncuentro()">Coordinar entrega en el campus</button>
+  }
+</div>

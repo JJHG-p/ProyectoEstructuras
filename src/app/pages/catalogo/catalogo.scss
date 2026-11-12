@@ -1,0 +1,22 @@
+@use '../../../styles/variables' as *;
+
+.filtros {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $espacio;
+  flex-wrap: wrap;
+  margin: $espacio 0;
+
+  .chips {
+    margin-bottom: 0;
+  }
+
+  .ordenar {
+    padding: 8px 12px;
+    border: 1px solid $borde;
+    border-radius: 8px;
+    background-color: $blanco;
+    font-size: 0.8rem;
+  }
+}
