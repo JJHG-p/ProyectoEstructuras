@@ -10,7 +10,7 @@ calculadoras y apuntes. Hecha con Angular 21 y Firebase.
 ## Enlaces
 - Propuesta gráfica: <img width="1536" height="1024" alt="UAO Marketplace Guia" src="https://github.com/user-attachments/assets/0bb04f02-a28a-4c76-bbbc-a1780d0acbef" />
 
-- Aplicación publicada (Netlify): [pegar enlace]
+- Aplicación publicada (Netlify): https://deft-chebakia-d61687.netlify.app/
 
 ## Estructuras de datos
 | Estructura | Archivo | Uso |
